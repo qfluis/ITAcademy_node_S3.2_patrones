@@ -1,29 +1,48 @@
-
-
 /*
-Crea un Decorator en un arxiu que retorni una funció. 
-Aquesta funció efectuarà una conversió de moneda a euros 
-multiplicant pel coeficient de conversió del fitxer adjunt 
-currency_conversions.json en funció de la divisa original
 Crea una petita aplicació que calculi el cost d'uns quants 
 Articles en euros a partir de les seves divises incials, 
 aplicant diferents conversions que usin el Decorator del punt 
 anterior
 */
 
-const decoratorSaludo = () => {
-    return () =>{
-        console.log ("holiwi");
-    }
-}
+const { currencyDecorator } = require('./decorator');
 
-class Prueba {
+const articulosImportados = [
+    { nombre: "game boy", precio: 150, moneda: 'GBP' },
+    { nombre: "kindle", precio: 80, moneda: 'USD' },
+    { nombre: "switch", precio: 300, moneda: 'CHF' },
+    { nombre: "funda game boy", precio: 950, moneda: 'JPY' },
+    { nombre: "ipad", precio: 1100, moneda: 'CAD' },
+    { nombre: "samsung galaxy", precio: 5200, moneda: 'CNY' },
+];
+
+class Productos {
     constructor(){
-        console.log("instanciado");
+        this.productos = [];
     }
+
+    anadirProducto(producto) {
+        this.productos.push(producto);
+    }     
     
+    mostrarProductos() {
+        let respuesta = "#### LISTADO PRODUCTOS ####\n";
+        for(let producto of this.productos){
+            respuesta += `> ${producto.nombre} - ${producto.importe}💶\n`
+        }
+        return respuesta;
+    }
 }
 
-const prueba = new Prueba();
-prueba.saludo = decoratorSaludo();
-prueba.saludo();
+// Aplicamos decorador currencyDecorator
+const productos = new Productos();
+productos.cambio = currencyDecorator();
+
+
+for (let producto of articulosImportados) {
+    const importeEUR = productos.cambio(producto.precio, producto.moneda);
+    const productoNew = {nombre: producto.nombre, importe: importeEUR}
+    productos.anadirProducto(productoNew);
+}
+
+console.log(productos.mostrarProductos());

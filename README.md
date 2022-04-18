@@ -11,8 +11,9 @@ npm run middleware
 ```
 ## Decorator (Nivel 2)
 Ficheros (en carpeta **2_decorator**):
-- **app.js**
-- **decorator.js**
+- **app.js**, aplicación con la implementación del decorador.
+- **decorator.js**, decorador que implementa la función de cambio de moneda a euros.
+- **currency_conversions.json**, fichero con los tipos de cambio.
 
 Para ejecutar el programa:
 ```
