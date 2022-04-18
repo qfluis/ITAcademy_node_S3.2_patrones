@@ -19,8 +19,12 @@ amqp.connect('amqp://localhost', (error0, connection) => {
         durable: false
         });
 
-        channel.sendToQueue(queue, Buffer.from(msg));
-        console.log(" [x] Sent %s", msg);
+        const consoleColor = "\x1b[35m%s\x1b[0m";        
+        console.log(consoleColor,`SERVER > Start queue ${queue}`);
+
+        channel.sendToQueue(queue, Buffer.from(msg));       
+
+        console.log(consoleColor,`SERVER > Sent > ${msg}`);
     });
 
     setTimeout(function() {

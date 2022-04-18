@@ -19,3 +19,17 @@ Para ejecutar el programa:
 ```
 npm run decorator
 ```
+## Publisher - Subscriber (Nivel 3)
+Necesario tener instalado Rabbit MQ (https://www.rabbitmq.com/download.html)
+instalar dependencias (amqplib)
+```
+npm install
+```
+Ficheros (en carpeta **3_publisher_subscriber**):
+- **app.js**, .
+
+
+Para ejecutar el programa:
+```
+npm run pub-subs
+```

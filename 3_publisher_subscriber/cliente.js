@@ -14,11 +14,13 @@ amqp.connect('amqp://localhost', function(error0, connection) {
         channel.assertQueue(queue, {
             durable: false
         });
+        
+        const consoleColor = "\x1b[36m%s\x1b[0m"; // \x1b[34m
 
-        console.log(" [*] Waiting for messages in %s. To exit press CTRL+C", queue);
+        console.log(consoleColor,`CLIENT > Waiting for messages in ${queue}. To exit press CTRL+C`);
 
         channel.consume(queue, function(msg) {
-            console.log(" [x] Received %s", msg.content.toString());
+            console.log(consoleColor, `CLIENT > Received ${msg.content.toString()}`);
         }, {
             noAck: true
         });
