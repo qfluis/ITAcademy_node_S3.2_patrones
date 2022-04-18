@@ -27,18 +27,18 @@ npm install
 ```
 Ficheros (en carpeta **3_publisher_subscriber**):
 - **app.js**, lanzador de 2 forks, una del servidor (publisher) y otra del client (subscriber).
--**servidor.js**, clase Publisher.
--**cliente.js**, clase Subscriber.
+- **servidor.js**, clase Publisher.
+- **cliente.js**, clase Subscriber.
 Para ejecutar el programa desde **app.js** y ejecutar 2 forks (**servidor.js** y **cliente.js**). Los mensajes comparten consola.
 ```
 npm run pub-subs
 ```
 Para ejecutar en consolas separadas, abrir dos consolas y ejecutar los comandos:
-- consola1:
+- consola 1:
 ```
 npm run subscriber
 ```
-- consola2:
+- consola 2:
 ```
 npm run publisher
 ```
