@@ -10,12 +10,12 @@ class MiddlewareContainer {
         for (let property of propertyNames) {
             if(property !== "constructor") {
                 this[property] = (args) => {
-                    //console.log(property);
                     this.req = {...args};
-                    // TODO: meter aquí ejecución de middlewares...
+                    // ejecución de middlewares
                     for (let middleware of this.middlewares){
                         this.req = middleware.call(this, this.req);
                     }
+                    // ejecución función
                     return prototype[property].call(this, this.req);
                 }
             }

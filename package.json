@@ -1,0 +1,20 @@
+{
+  "name": "s3.2_patrones",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "middleware": "node 1_middleware/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qfluis/ITAcademy_node_S3.2_patrones.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/qfluis/ITAcademy_node_S3.2_patrones/issues"
+  },
+  "homepage": "https://github.com/qfluis/ITAcademy_node_S3.2_patrones#readme"
+}

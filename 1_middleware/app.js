@@ -1,3 +1,6 @@
+const fs = require('fs');
+const { MiddlewareContainer } = require("./middlewarecontainer");
+
 // Clase calculadora
 class Calculadora {
     constructor () {}
@@ -12,23 +15,19 @@ class Calculadora {
     }
 }
 
-// TODO: leer json con estos datos
-let params = {
-    num1: 2,
-    num2: 2
-};
-console.log("Parametros originales: ");
-console.log(params);
+// Cargar parametros
+const params = JSON.parse(fs.readFileSync(__dirname + "/params.json", "utf8"));
+console.clear();
+console.log("Parametros originales: ", params);
 
 // Ejecutar calculadora
 const calculadora = new Calculadora();
-console.log("Funciones calculadora: ");
+console.log("### FUNCIONES CALCULADORA #############");
 console.log("Suma: ", calculadora.suma(params));
 console.log("Resta: ", calculadora.resta(params));
 console.log("Multiplica: ", calculadora.multiplica(params));
 
-// Middleware
-const { MiddlewareContainer } = require("./middlewarecontainer");
+// Añadir middlewares a la calculadora
 const app = new MiddlewareContainer(calculadora);
 app.use((req)=>{
     req.num1 **= 2;
@@ -48,7 +47,7 @@ app.use((req)=>{
     console.log("  middleware3", req);
     return req;
 });
-console.log("Funciones middleware: ");
+console.log("### FUNCIONES CON MIDDLEWARES #########");
 console.log("#Suma: ", app.suma(params));
 console.log("#Resta: ", app.resta(params));
 console.log("#Multiplicación: ", app.multiplica(params));
