@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "middleware": "node 1_middleware/app.js"
+    "middleware": "node 1_middleware/app.js",
+    "decorator": "node 2_decorator/app.js"
   },
   "repository": {
     "type": "git",
