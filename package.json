@@ -6,7 +6,9 @@
   "scripts": {
     "middleware": "node 1_middleware/app.js",
     "decorator": "node 2_decorator/app.js",
-    "pub-subs": "node 3_publisher_subscriber/app.js"
+    "pub-subs": "node 3_publisher_subscriber/app.js",
+    "subscriber": "node 3_publisher_subscriber/cliente.js",
+    "publisher": "node 3_publisher_subscriber/servidor.js"
   },
   "repository": {
     "type": "git",
