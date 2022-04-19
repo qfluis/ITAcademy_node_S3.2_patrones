@@ -16,23 +16,23 @@ console.log("Multiplica: ", calculadora.multiplica(params));
 
 // Añadir middlewares a la calculadora
 const app = new MiddlewareContainer(calculadora);
-app.use((req)=>{
+app.use((req, next)=>{
     req.num1 **= 2;
     req.num2 **= 2;
     console.log("  middleware1", req);
-    return req;
+    next(); // si todo ok
 });
-app.use((req)=>{
+app.use((req, next)=>{
     req.num1 **= 3;
     req.num2 **= 3;
     console.log("  middleware2", req);
-    return req;
+    next(); // si todo ok
 });
-app.use((req)=>{
+app.use((req, next)=>{
     req.num1 /= 2;
     req.num2 /= 2;
     console.log("  middleware3", req);
-    return req;
+    next();
 });
 console.log("### FUNCIONES CON MIDDLEWARES #########");
 console.log("#Suma: ", app.suma(params));

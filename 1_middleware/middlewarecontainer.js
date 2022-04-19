@@ -11,17 +11,28 @@ class MiddlewareContainer {
             if(property !== "constructor") {
                 this[property] = (args) => {
                     this.req = {...args};
-                    // ejecución de middlewares
+                   
+                    /* EJECUCIÓN MIDDLEWARES OLD
                     for (let middleware of this.middlewares){
-                        this.req = middleware.call(this, this.req);
-                    }
+                        middleware.call(this, this.req);
+                    }*/
+                    
+                    // Ejecución 1er middleware
+                    this.ejecutarMiddleware(0);
+
                     // ejecución función
                     return prototype[property].call(this, this.req);
                 }
             }
         }
-
-    }       
+    }    
+    ejecutarMiddleware(index) {
+        if (index < (this.middlewares.length-1)) {
+            this.middlewares[index].call(this, this.req, () => this.ejecutarMiddleware(index+1));
+        } else if (index = (this.middlewares.length-1)) { // caso de que sea el último
+            this.middlewares[index].call(this, this.req, () => {});
+        }       
+    }   
   
     use (funcion) {
         this.middlewares.push(funcion);
