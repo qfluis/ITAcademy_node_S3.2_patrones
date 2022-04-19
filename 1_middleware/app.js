@@ -1,19 +1,6 @@
 const fs = require('fs');
 const { MiddlewareContainer } = require("./middlewarecontainer");
-
-// Clase calculadora
-class Calculadora {
-    constructor () {}
-    suma({num1, num2}) {
-        return num1 + num2;
-    }
-    resta({num1, num2}) {
-        return num1 - num2;
-    }
-    multiplica({num1, num2}) {
-        return num1 * num2;
-    }
-}
+const Calculadora = require("./Calculadora.js");
 
 // Cargar parametros
 const params = JSON.parse(fs.readFileSync(__dirname + "/params.json", "utf8"));
