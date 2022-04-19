@@ -27,7 +27,7 @@ class Publisher {
             setTimeout(function() {
                 connection.close();
                 process.exit(0)
-            }, 50000);
+            }, 10000);
         });        
     }
 }
