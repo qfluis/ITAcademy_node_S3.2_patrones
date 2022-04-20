@@ -8,11 +8,11 @@ class Productos {
     }     
     
     mostrarProductos() {
-        let respuesta = "#### LISTADO PRODUCTOS ####\n";
-        for(let producto of this.productos){
+        console.table(this.productos);
+        /*for(let producto of this.productos){
             respuesta += `> ${producto.nombre} - ${producto.importe}💶\n`
         }
-        return respuesta;
+        return respuesta;*/
     }
 }
 

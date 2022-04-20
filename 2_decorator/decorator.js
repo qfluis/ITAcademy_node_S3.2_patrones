@@ -1,3 +1,4 @@
+const { Console } = require('console');
 const fs = require('fs');
 /*
 Crea un Decorator en un arxiu que retorni una funció. 
@@ -7,7 +8,7 @@ currency_conversions.json en funció de la divisa original
 */
 
 
-const currencyDecorator = (objeto, metodo) => {    
+const currencyDecorator = (objeto) => {    
     /* valores posibles moneda: USD, GPB, CHF, JPY, CAD, CNY    */
     
     /* OLD IMPLEMENTATION
@@ -17,11 +18,10 @@ const currencyDecorator = (objeto, metodo) => {
         return importe * cambio;
     }*/    
     
-    objeto[metodo] = (importe, moneda) =>{
-        const tablaConversion = JSON.parse(fs.readFileSync(__dirname + "/currency_conversions.json"))
-        const cambio = tablaConversion[moneda+"_EUR"];
-        return importe * cambio;
-    }
+    const tablaConversion = JSON.parse(fs.readFileSync(__dirname + "/currency_conversions.json"));
+    for (let producto of objeto.productos) {
+        producto.Leuros = producto.precio * tablaConversion[producto.moneda+"_EUR"];
+    }    
 }
 
 module.exports.currencyDecorator = currencyDecorator;

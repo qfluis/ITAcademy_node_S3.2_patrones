@@ -7,6 +7,7 @@ anterior
 const Productos = require('./Productos.js');
 const { currencyDecorator } = require('./decorator');
 
+const productos = new Productos();
 const articulosImportados = [
     { nombre: "game boy", precio: 150, moneda: 'GBP' },
     { nombre: "kindle", precio: 80, moneda: 'USD' },
@@ -16,15 +17,30 @@ const articulosImportados = [
     { nombre: "samsung galaxy", precio: 5200, moneda: 'CNY' },
 ];
 
-// Aplicamos decorador currencyDecorator
-const productos = new Productos();
-currencyDecorator(productos,"cambio");
-//productos.cambio = currencyDecorator();  OLD IMPLEMENTATION
-
 for (let producto of articulosImportados) {
-    const importeEUR = productos.cambio(producto.precio, producto.moneda);
-    const productoNew = {nombre: producto.nombre, importe: importeEUR}
-    productos.anadirProducto(productoNew);
+    productos.anadirProducto(producto);
 }
+console.log("PRODUCTOS INICIALES");
+productos.mostrarProductos();
 
-console.log(productos.mostrarProductos());
+// Aplicamos decorador currencyDecorator
+currencyDecorator(productos);
+
+console.log("PRODUCTOS INICIALES + PRECIO EUROS");
+productos.mostrarProductos();
+
+productos.anadirProducto( { nombre: "game boy color", precio: 180, moneda: 'GBP' } );
+productos.anadirProducto( { nombre: "game boy color plus", precio: 220, moneda: 'GBP' } );
+
+console.log("PRODUCTOS AÑADIDOS");
+productos.mostrarProductos();
+
+console.log("PRODUCTOS AÑADIDOS + PRECIO EUROS");
+currencyDecorator(productos);
+productos.mostrarProductos();
+
+
+
+
+
+
